@@ -19,6 +19,28 @@ var nombreColores = ['White', 'LightYellow',
   'MediumPurple', 'Lavender', 'Gainsboro', 'LightGray', 'Silver', 'DarkGray', 'Gray',
   'DimGray', 'LightSlateGray', 'DarkSlateGray', 'Black'
 ];
+var paleta = document.getElementById('paleta');
+var grilla = document.getElementById('grilla-pixeles');
+
+function colores(){
+  for(var i = 0; i < nombreColores.length; i++){
+    
+    var crearDiv = document.createElement('div');
+    crearDiv.className = "color-paleta";
+    crearDiv.style.backgroundColor = nombreColores[i];
+    paleta.appendChild(crearDiv);
+
+  }
+}
+colores();
+
+function crearGrilla(){
+  for(var i=0; i < 1751; i++){
+    var pixel = document.createElement('div');
+    grilla.appendChild(pixel);
+  }
+}
+crearGrilla();
 
 // Variable para guardar el elemento 'color-personalizado'
 // Es decir, el que se elige con la rueda de color.
