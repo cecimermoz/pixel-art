@@ -42,48 +42,26 @@ function crearGrilla(){
 }
 crearGrilla();
 
-// Variable para guardar el elemento 'color-personalizado'
-// Es decir, el que se elige con la rueda de color.
+// Variable para guardar el elemento 'color-personalizado', el que se elige con la rueda de color.
 var colorPersonalizado = document.getElementById('color-personalizado');
 colorPersonalizado.addEventListener('change', 
   (function() {
-    // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
-    // Completar para que cambie el indicador-de-color al colorActual
     $('#indicador-de-color') = colorActual;
   })
 );
 
-/* Primero, vamos a hacer que nuestro programa permita al usuario seleccionar un color
-de la paleta. Para eso, necesitamos lograr que, al hacer clic en algún color,
-el indicador-de-color cambie y refleje la selección.
-
-Por ejemplo, si cliqueamos en el color violeta,
-el indicador-de-color deberá cambiar a violeta.*/
-
+// Para el funcionamiento del indicador de color
 var colorSeleccionado = $("div.color-paleta");
-
 colorSeleccionado.click(function(){
   var colorNuevo = $(this).attr("style");
   $('#indicador-de-color').attr("style", colorNuevo);
 });
 
-/*
-imagenesVarias.click(function() {
-  var nuevaImagen = $(this).attr('src');
-  imagenPrincipal.attr('src', nuevaImagen);
-  console.log(imagenesVarias);
-  
+// Para el funcionamiento de pintar el pixel de la grilla
+var pixelSeleccionado = $("#grilla-pixeles").find("div");
+pixelSeleccionado.click(function(){
+  var fondoActual = $(this).attr("style");
+  var indicadorColor = $('#indicador-de-color').attr("style");
+  $(this).attr("style", indicadorColor);
 });
-
-/*
-Para eso debo acceder a:
-  - escuchar cuando hacen click en el div.color-paleta que se encuentre dentro
-  de #paleta (o var paleta)
-
-  - Tomar el backgroundColor de $(this)
-
-  - cambiar el color de indicador, por el del $(this)
-*/
-
-
