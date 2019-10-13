@@ -21,6 +21,9 @@ var nombreColores = ['White', 'LightYellow',
 ];
 var paleta = document.getElementById('paleta');
 var grilla = document.getElementById('grilla-pixeles');
+var $borrar = $('#borrar');
+var $fondo = $('#grilla-pixeles div');
+var $guardar = $('#guardar');
 
 // Muestra las opciones de colores
 function colores(){
@@ -95,3 +98,34 @@ function mouseActivo(){
  
 };
 mouseActivo();
+
+// Para funcionalidad de Borrar todo
+// Lo que sucederá cuando el botón borrar se clickee:
+$borrar.click( function(){
+  $fondo.animate({
+    "background-color": "#FFF"
+  }, 1250);
+});
+
+// Para cargar las imágenes de superhéroes
+var $batman = $('#batman');
+var $wonder = $('#wonder');
+var $flash = $('#flash');
+var $invisible = $('#invisible');
+$batman.click(function(){
+  cargarSuperheroe(batman);
+});
+$wonder.click(function(){
+  cargarSuperheroe(wonder);
+});
+$flash.click(function(){
+  cargarSuperheroe(flash);
+});
+$invisible.click(function(){
+  cargarSuperheroe(invisible);
+});
+
+//Para guardar la imagen
+$guardar.click(function(){
+  guardarPixelArt();
+});
