@@ -22,18 +22,18 @@ var nombreColores = ['White', 'LightYellow',
 var paleta = document.getElementById('paleta');
 var grilla = document.getElementById('grilla-pixeles');
 
+// Muestra las opciones de colores
 function colores(){
   for(var i = 0; i < nombreColores.length; i++){
-    
     var crearDiv = document.createElement('div');
     crearDiv.className = "color-paleta";
     crearDiv.style.backgroundColor = nombreColores[i];
     paleta.appendChild(crearDiv);
-
   }
 }
 colores();
 
+// Muestra la grilla en blanco
 function crearGrilla(){
   for(var i=0; i < 1751; i++){
     var pixel = document.createElement('div');
@@ -42,26 +42,56 @@ function crearGrilla(){
 }
 crearGrilla();
 
-// Variable para guardar el elemento 'color-personalizado', el que se elige con la rueda de color.
+// Variable para guardar el elemento 'color-personalizado' que se elige con la rueda de color
 var colorPersonalizado = document.getElementById('color-personalizado');
+
+// Cambia el indicador-de-color por el color-personalizado
 colorPersonalizado.addEventListener('change', 
-  (function() {
+  (function(){
     colorActual = colorPersonalizado.value;
-    $('#indicador-de-color') = colorActual;
+    $('#indicador-de-color').css("background-color", colorActual);
   })
 );
 
 // Para el funcionamiento del indicador de color
-var colorSeleccionado = $("div.color-paleta");
-colorSeleccionado.click(function(){
-  var colorNuevo = $(this).attr("style");
-  $('#indicador-de-color').attr("style", colorNuevo);
+var $colorSeleccionado = $("div.color-paleta");
+$colorSeleccionado.click(function(){
+  var $colorNuevo = $(this).attr("style");
+  $('#indicador-de-color').attr("style", $colorNuevo);
 });
 
 // Para el funcionamiento de pintar el pixel de la grilla
-var pixelSeleccionado = $("#grilla-pixeles").find("div");
-pixelSeleccionado.click(function(){
-  var fondoActual = $(this).attr("style");
-  var indicadorColor = $('#indicador-de-color').attr("style");
-  $(this).attr("style", indicadorColor);
-});
+var $pixelSeleccionado = $("#grilla-pixeles").find("div");
+var $indicadorColor = $('#indicador-de-color').css("background-color");
+
+function pintar(){
+  $pixelSeleccionado.click(function(){
+    var $indicadorColor = $('#indicador-de-color').css("background-color");
+    $(this).css("background-color", $indicadorColor);
+  });
+};
+pintar();
+
+//Chequea que el mouse esté activo
+
+ 
+function mouseActivo(){
+  var click = false;
+
+  $pixelSeleccionado.mousedown(function(){
+    click = true;
+    });
+  
+  $pixelSeleccionado.mouseup(function(){
+    click = false;
+  });
+
+  grilla.addEventListener("mouseover", function( event ) {   
+    if(click){
+      $indicadorColor = $('#indicador-de-color').css("background-color");
+      event.target.style.backgroundColor = $indicadorColor;
+    }
+  });
+ 
+};
+mouseActivo();
