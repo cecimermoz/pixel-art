@@ -22,7 +22,6 @@ var nombreColores = ['White', 'LightYellow',
 var paleta = document.getElementById('paleta');
 var grilla = document.getElementById('grilla-pixeles');
 var $borrar = $('#borrar');
-var $fondo = $('#grilla-pixeles div');
 var $guardar = $('#guardar');
 
 // Muestra las opciones de colores
@@ -101,6 +100,7 @@ mouseActivo();
 
 // Para funcionalidad de Borrar todo
 // Lo que sucederá cuando el botón borrar se clickee:
+var $fondo = $('#grilla-pixeles div');
 $borrar.click( function(){
   $fondo.animate({
     "background-color": "#FFF"
